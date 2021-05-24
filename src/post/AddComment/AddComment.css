@@ -1,0 +1,28 @@
+.addComment {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  /* justify-content: space-between; */
+}
+
+.addComment__input {
+  font-family: inherit;
+  background: transparent;
+  border: none;
+  outline: none;
+  resize: none;
+  color: #8e8e8e;
+  height: 21px;
+  width: 85%;
+}
+
+.addComment__btn {
+  color: #0095f6;
+  font-weight: 600;
+  background-color: transparent;
+  border: none;
+  width: 15%;
+  /* height: inherit; */
+}

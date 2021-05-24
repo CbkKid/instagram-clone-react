@@ -1,0 +1,26 @@
+export const GET_POSTS = "post/FETCH";
+export const ADD_POST = "post/ADD";
+
+export const ADD_POST_COMMENT = "post/ADD_COMMENT";
+export const ADD_POST_COMMENT_SUCCESS = "post/ADD_COMMENT_SUCCESS";
+export const ADD_POST_COMMENT_FAIL = "post/ADD_COMMENT_FAIL";
+
+export const FETCH_POST = "post/FETCH_POST";
+export const FETCH_POST_SUCCESS = "post/FETCH_POST_SUCCESS";
+export const FETCH_POST_FAIL = "post/FETCH_POST_FAIL";
+
+export const FETCH_POSTS = "post/FETCH_POSTS";
+export const FETCH_POSTS_SUCCESS = "post/FETCH_POSTS_SUCCESS";
+export const FETCH_POSTS_FAIL = "post/FETCH_POSTS_FAIL";
+
+export const FETCH_LATEST_POSTS = "post/FETCH_LATEST_POSTS";
+export const FETCH_LATEST_POSTS_SUCCESS = "post/FETCH_LATEST_POSTS_SUCCESS";
+export const FETCH_LATEST_POSTS_FAIL = "post/FETCH_LATEST_POSTS_FAIL";
+
+export const POST_LIKED_BY_USER = "post/POST_LIKED_BY_USER";
+export const POST_LIKED_BY_USER_SUCCESS = "post/POST_LIKED_BY_USER_SUCCESS";
+export const POST_LIKED_BY_USER_FAILED = "post/POST_LIKED_BY_USER_FAIL";
+
+export const POST_UNLIKED_BY_USER = "post/POST_UNLIKED_BY_USER";
+export const POST_UNLIKED_BY_USER_SUCCESS = "post/POST_UNLIKED_BY_USER_SUCCESS";
+export const POST_UNLIKED_BY_USER_FAILED = "post/POST_UNLIKED_BY_USER_FAIL";

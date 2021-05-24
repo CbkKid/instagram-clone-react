@@ -1,0 +1,136 @@
+.profileContainer {
+  display: flex;
+  flex-direction: column;
+  max-width: 900px;
+  margin: auto;
+}
+
+.profile {
+  display: grid;
+  grid-template-columns: 120px 1fr 1fr;
+  grid-template-areas:
+    "avatar header header"
+    "userdetails userdetails userdetails"
+    "userinfo userinfo userinfo";
+  margin-top: 20px;
+  /* padding-left: 20px; */
+}
+
+.profile > div:not(.profile__userInfo):not(.profile__username) {
+  margin-left: 20px;
+}
+
+.profile__header {
+  margin: 20px;
+  display: flex;
+  flex-direction: row;
+  grid-area: header;
+}
+
+.profile__username {
+  grid-area: header;
+  text-align: left;
+}
+
+.profile__username > * {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.username {
+  font-weight: 300;
+}
+
+.profile__btn {
+  background: #0095f6;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #0095f6;
+  border-radius: 3px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 26px;
+  padding: 0px 24px;
+  color: #fff;
+}
+
+.profile__details {
+  display: flex;
+  flex-direction: row;
+}
+
+.profile__userPic {
+  /* width: 150px;
+  height: 150px; */
+  /* margin: auto; */
+  margin-right: 28px;
+  grid-area: avatar;
+}
+
+.profile__userPic > img {
+  width: 77px;
+  height: 77px;
+}
+
+.profile__userDetails {
+  text-align: left;
+  grid-area: userdetails;
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
+
+.profile__userInfo {
+  border-top: 1px solid #dbdbdb;
+  grid-area: userinfo;
+}
+
+.profile__userPosts {
+  flex-grow: 1;
+  border-top: 1px solid #dbdbdb;
+}
+
+@media (min-width: 736px) {
+  .profile {
+    display: grid;
+    grid-template-columns: 2fr 4fr;
+    grid-template-areas:
+      "avatar username"
+      "avatar userinfo"
+      "avatar userdetails"
+      ". userdetails"
+      ". userdetails";
+    margin-top: 60px;
+  }
+
+  .profile > div:not(.profile__userInfo):not(.profile__username) {
+    margin-left: 0px;
+  }
+
+  .profile__userInfo {
+    text-align: left;
+    width: 300px;
+    grid-area: userinfo;
+    border: none;
+  }
+
+  .profile__userDetails {
+    margin-left: 0px;
+    margin-top: 0px;
+    margin-bottom: 50px;
+  }
+
+  .profile__userPic > img {
+    width: 150px;
+    height: 150px;
+  }
+
+  .profile__username {
+    grid-area: username;
+    text-align: left;
+  }
+
+  .profile__username > * {
+    display: inline-block;
+    margin-right: 10px;
+  }
+}

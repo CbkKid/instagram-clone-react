@@ -1,0 +1,25 @@
+.comment {
+  line-height: 1.8;
+}
+
+.comment__container {
+  display: flex;
+  align-items: flex-start;
+  margin: 8px 0px 8px 0px;
+}
+
+.comment__username {
+  font-weight: 650;
+}
+
+.comment__text {
+  margin-left: 4px;
+}
+
+.comment--visible {
+  display: block;
+}
+
+.comment--hidden {
+  display: none;
+}

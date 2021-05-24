@@ -1,0 +1,37 @@
+.header {
+  position: sticky;
+  background-color: white;
+  top: 0;
+  border-bottom: 1px solid #dbdbdb;
+}
+
+.header__inner {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 50px;
+  justify-content: space-between;
+  max-width: 900px;
+  margin: auto;
+}
+
+.header__logo {
+  /* align-self: flex-start; */
+
+  margin-left: 15px;
+}
+
+.header__logo > h1 {
+  text-align: center;
+  font-size: 20px;
+  font-family: Cookie, cursive;
+}
+
+.header__nav {
+  /* align-self: flex-end; */
+  margin-right: 15px;
+}
+
+.header__nav > * {
+  margin-left: 20px;
+}

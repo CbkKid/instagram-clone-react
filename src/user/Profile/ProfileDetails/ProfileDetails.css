@@ -1,0 +1,10 @@
+.userDetails {
+  display: flex;
+  flex-direction: column;
+  line-height: 20px;
+  font-size: 14px;
+}
+
+.userDetails__fullname {
+  font-weight: 500;
+}
