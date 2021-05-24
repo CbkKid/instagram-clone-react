@@ -133,7 +133,7 @@ export const UnlikePostSuccess = (post) => {
 
 export const UnlikePostFail = (error) => {
   return {
-    type: types.POST_UNLIKED_BY_USER_FAILgit a,
+    type: types.POST_UNLIKED_BY_USER_FAIL,
     error: error
   };
 };
