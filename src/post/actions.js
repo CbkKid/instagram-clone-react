@@ -110,7 +110,7 @@ export const LikePostSuccess = (post) => {
 
 export const LikePostFail = (error) => {
   return {
-    type: types.POST_LIKED_BY_USER_FAILED,
+    type: types.POST_LIKED_BY_USER_FAIL,
     error: error
   };
 };
@@ -133,7 +133,7 @@ export const UnlikePostSuccess = (post) => {
 
 export const UnlikePostFail = (error) => {
   return {
-    type: types.POST_UNLIKED_BY_USER_FAILED,
+    type: types.POST_UNLIKED_BY_USER_FAILgit a,
     error: error
   };
 };
