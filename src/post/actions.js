@@ -56,27 +56,27 @@ export const FetchPost = (postId) => {
   };
 };
 
-export const FetchPostsByUserSuccess = (posts) => {
-  return {
-    type: types.FETCH_USER_POSTS_SUCCESS,
-    posts: posts
-  };
-};
+// export const FetchPostsByUserSuccess = (posts) => {
+//   return {
+//     type: types.FETCH_USER_POSTS_SUCCESS,
+//     posts: posts
+//   };
+// };
 
-export const FetchPostsByUserFail = (error) => {
-  return {
-    type: types.FETCH_USER_POSTS_FAIL,
-    error: error
-  };
-};
+// export const FetchPostsByUserFail = (error) => {
+//   return {
+//     type: types.FETCH_USER_POSTS_FAIL,
+//     error: error
+//   };
+// };
 
-export const FetchPostsByUser = (userId) => {
-  return function (dispatch) {
-    PostService.getPostsByUser(userId)
-      .then((posts) => dispatch(FetchPostSuccess(posts)))
-      .catch((e) => dispatch(FetchPostFail(e)));
-  };
-};
+// export const FetchPostsByUser = (userId) => {
+//   return function (dispatch) {
+//     PostService.getPostsByUser(userId)
+//       .then((posts) => dispatch(FetchPostSuccess(posts)))
+//       .catch((e) => dispatch(FetchPostFail(e)));
+//   };
+// };
 
 export const FetchLatestPostsSuccess = (posts) => {
   return {
