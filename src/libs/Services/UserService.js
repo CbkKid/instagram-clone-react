@@ -18,7 +18,7 @@ const users = [
           username: "wanBissaka"
         },
         img:
-          "https://www.unitedinfocus.com/static/uploads/14/2020/10/GettyImages-1229132241.jpg",
+          "https://idsb.tmgrup.com.tr/ly/uploads/images/2021/04/30/111939.jpg",
         likesCount: 7,
         description:
           "Give it , Give it , Give it to Edi Cavani! pass him the ball and he will score all the goals!",

@@ -173,6 +173,7 @@ const PostService = {
         const postToLike = posts.find((post) => post.postId == postId);
         if (postToLike) {
           postToLike.isLikedByUser = true;
+          postToLike.likesCount++;
           posts = posts.map(post=> post.postId === postId ? postToLike : post);
           resolve({ succeeded: true, data: postToLike });
         }
@@ -192,6 +193,7 @@ const PostService = {
         const postToUnlike = posts.find((post) => post.postId == postId);
         if (postToUnlike) {
           postToUnlike.isLikedByUser = false;
+          postToUnlike.likesCount--;
           posts = posts.map(post=> post.postId === postId ? postToUnlike : post);
           resolve({ succeeded: true, data: postToUnlike });
         }
