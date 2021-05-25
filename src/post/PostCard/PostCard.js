@@ -3,7 +3,7 @@ import "./PostCard.css";
 import { LikesCounter } from "../LikesCounter";
 import { AddComment } from "../AddComment";
 import { CommentsList } from "../CommentsList";
-import { PostActions } from "../PostActions";
+import { PostActionsContainer } from "../PostActions";
 import { PostHeader } from "../PostHeader";
 import { PostDescription } from "../PostDescription";
 
@@ -21,7 +21,7 @@ export default function PostCard({ post }) {
       <div className="post__body">
         <div className="post__details">
           <div className="post__actions">
-            <PostActions />
+            <PostActionsContainer postId={post.postId}/>
           </div>
           <LikesCounter likesCount={post.likesCount} />
           <div>

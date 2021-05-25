@@ -10,6 +10,7 @@ let posts = [
     },
     img: "https://idsb.tmgrup.com.tr/ly/uploads/images/2021/04/30/111939.jpg",
     likesCount: 7,
+    isLikedByUser:true,
     description:
       "Give it , Give it , Give it to Edi Cavani! pass him the ball and he will score all the goals!",
     comments: [
@@ -172,7 +173,7 @@ const PostService = {
         const postToLike = posts.find((post) => post.postId == postId);
         if (postToLike) {
           postToLike.isLikedByUser = true;
-          posts = [...posts.map((post) => Object.assign({}, post))];
+          posts = posts.map(post=> post.postId === postId ? postToLike : post);
           resolve({ succeeded: true, data: postToLike });
         }
         reject({
@@ -180,7 +181,7 @@ const PostService = {
           data: null,
           error: new Error("no such post")
         });
-      }, Math.floor(Math.random() * 1500));
+      }, Math.floor(Math.random() * 500));
     });
 
     return promise;
@@ -191,7 +192,7 @@ const PostService = {
         const postToUnlike = posts.find((post) => post.postId == postId);
         if (postToUnlike) {
           postToUnlike.isLikedByUser = false;
-          posts = [...posts.map((post) => Object.assign({}, post))];
+          posts = posts.map(post=> post.postId === postId ? postToUnlike : post);
           resolve({ succeeded: true, data: postToUnlike });
         }
         reject({
@@ -199,7 +200,7 @@ const PostService = {
           data: null,
           error: new Error("no such post")
         });
-      }, Math.floor(Math.random() * 1500));
+      }, Math.floor(Math.random() * 500));
     });
 
     return promise;

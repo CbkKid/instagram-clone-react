@@ -86,7 +86,6 @@ export const postsReducer = (state = initialState, action) => {
       return {
         isLoading: false,
         error: action.error,
-        data: []
       };
 
     case types.POST_UNLIKED_BY_USER_SUCCESS:

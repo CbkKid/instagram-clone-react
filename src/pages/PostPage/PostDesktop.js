@@ -1,7 +1,7 @@
 import React from "react";
 import { CommentsList } from "../../post/CommentsList";
 import { LikesCounter } from "../../post/LikesCounter";
-import { PostActions } from "../../post/PostActions";
+import { PostActionsContainer } from "../../post/PostActions";
 import { PostDescription } from "../../post/PostDescription";
 import { PostHeader } from "../../post/PostHeader";
 import { Modal } from "../../libs/components/Modal";
@@ -138,7 +138,7 @@ export default function PostDesktop({ post, user, isLoading }) {
                       </div>
                     </div>
                     <div className="post__footer">
-                      <PostActions />
+                      <PostActionsContainer postId={post.postId} />
                       <div className="post__likes">
                         <LikesCounter likesCount={post.likesCount} />
                       </div>

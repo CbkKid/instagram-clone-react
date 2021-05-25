@@ -119,7 +119,7 @@ export const LikePost = (postId, username) => {
   return function (dispatch) {
     dispatch({ type: types.POST_LIKED_BY_USER });
     PostService.likePost(postId, username)
-      .then((result) => dispatch(LikePostSuccess(result.post)))
+      .then((result) => dispatch(LikePostSuccess(result.data)))
       .catch((result) => dispatch(LikePostFail(result.error)));
   };
 };
@@ -142,7 +142,7 @@ export const UnlikePost = (postId, username) => {
   return function (dispatch) {
     dispatch({ type: types.POST_UNLIKED_BY_USER });
     PostService.unlikePost(postId, username)
-      .then((result) => dispatch(result.post))
-      .catch((result) => dispatch(result.error));
+      .then((result) => dispatch(UnlikePostSuccess(result.data)))
+      .catch((result) => dispatch(UnlikePostFail(result.error)));
   };
 };

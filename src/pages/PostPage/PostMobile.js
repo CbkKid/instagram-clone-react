@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { CommentsList } from "../../post/CommentsList";
 import { LikesCounter } from "../../post/LikesCounter";
-import { PostActions } from "../../post/PostActions";
+import { PostActions, PostActionsContainer } from "../../post/PostActions";
 import { PostDescription } from "../../post/PostDescription";
 import { PostHeader } from "../../post/PostHeader";
 import WithLoading from "../../libs/HOC/WithLoading";
@@ -22,7 +22,7 @@ function PostMobile({ post }) {
             <img src={post.img} alt="" />
           </div>
           <div className="post__actions">
-            <PostActions />
+            <PostActionsContainer postId={post.postId} />
           </div>
           <div className="post__likes">
             <LikesCounter likesCount={post.likesCount} />
