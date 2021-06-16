@@ -2,22 +2,16 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   padding: 10px 0px 10px 0px;
-  /* border-radius: 4px; */
 }
 
 .profileInfo__item {
   padding: 5px 0px 5px 0px;
   color: #8e8e8e;
-  /* width: 80px; */
 }
 
 .item--stretched > * {
   display: block;
 }
-
-/* .profileInfo__item:not(:last-child) {
-  border-right: 1px solid #8e8e8e;
-} */
 
 .profileInfo__count {
   font-weight: 600;
