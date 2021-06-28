@@ -1,0 +1,8 @@
+.appLayout{
+    display: flex;
+    flex-direction: column;
+}
+
+.appBody{
+    min-height: calc(100vh - 70px);
+}

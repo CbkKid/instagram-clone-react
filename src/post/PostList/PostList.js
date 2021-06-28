@@ -1,12 +1,13 @@
 import React from "react";
 import { PostCard } from "../PostCard";
+import './PostList.css';
 
 export default function PostList({ posts }) {
   return (
-    <div>
+    <ul className="postlist">
       {posts.length > 0
-        ? posts.map((post) => <PostCard key={post.postId} post={post} />)
+        ? posts.map((post) => <li data-testid="post-listitem" key={post.postId}><PostCard post={post} /></li>)
         : null}
-    </div>
+    </ul>
   );
 }

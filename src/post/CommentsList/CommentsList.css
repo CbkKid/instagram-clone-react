@@ -8,5 +8,7 @@
 
   .Comments {
     /* height: 100%; */
+    padding: 0;
     overflow-y: scroll;
+    list-style-type: none;
   }

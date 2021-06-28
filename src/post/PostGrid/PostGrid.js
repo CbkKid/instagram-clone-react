@@ -23,9 +23,11 @@ export default function PostGrid({ posts }) {
               <Square
                 key={post.postId}
                 className="posts__item"
-                // onClick={() => setIsModalOpen(true)}
               >
-                <Link to={`/p/${post.postId}`}>
+                <Link 
+                to={`/p/${post.postId}`} 
+                data-testid="post-grid-item"
+                >
                   <img
                     className="posts__image"
                     src={post.img}

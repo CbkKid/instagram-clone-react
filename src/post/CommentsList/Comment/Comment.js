@@ -11,6 +11,7 @@ export default function Comment({
 }) {
   return isDetailed ? (
     <div
+      data-testid="detailed-comment"
       className={
         isVisible ? "comment comment--visible" : "comment comment--hidden"
       }
@@ -31,6 +32,7 @@ export default function Comment({
     </div>
   ) : (
     <div
+      data-testid="plain-comment"
       className={
         isVisible ? "comment comment--visible" : "comment comment--hidden"
       }

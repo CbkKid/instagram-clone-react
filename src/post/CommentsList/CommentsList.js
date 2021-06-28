@@ -22,18 +22,19 @@ export default function CommentsList({ comments, style, isDetailed }) {
             : `View all ${comments.length} comments`}
         </button>
       ) : null}
-      <div className="Comments" style={{ ...style }}>
+      <ul className="Comments" style={{ ...style }}>
         {comments.map((comment, i) => (
-          <Comment
-            key={comment.id}
-            username={comment.user.username}
-            userImg={comment.user.avatar}
-            comment={comment.text}
-            isVisible={i < visibleCommentsCount ? true : false}
-            isDetailed={isDetailed}
-          />
+          <li key={comment.id}>
+            <Comment
+              username={comment.user.username}
+              userImg={comment.user.avatar}
+              comment={comment.text}
+              isVisible={i < visibleCommentsCount ? true : false}
+              isDetailed={isDetailed}
+            />
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   );
 }

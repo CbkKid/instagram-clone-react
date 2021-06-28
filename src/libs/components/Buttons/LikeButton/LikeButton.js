@@ -3,5 +3,5 @@ import { ReactComponent as Heart } from "../../../../assets/heart.svg";
 import { ReactComponent as HeartActive } from "../../../../assets/heart-active.svg";
 
 export default function LikeButton({ isActive , onClick }) {
-  return isActive ? <div onClick={onClick}><HeartActive /></div> : <div onClick={onClick}><Heart /></div>;
+  return isActive ? <div data-testid="likeButton" onClick={onClick}><HeartActive /></div> : <div data-testid="likeButton" onClick={onClick}><Heart /></div>;
 }

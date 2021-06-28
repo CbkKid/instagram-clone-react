@@ -14,7 +14,9 @@ export const AddCommentToPost = (postId, commentText) => {
   return function (dispatch, getState) {
     const user = getState().auth.user;
     PostService.addCommentToPost(postId, user, commentText)
-      .then((result) => dispatch(AddCommentToPostSuccess(result.post)))
+      .then((result) => {
+        dispatch(AddCommentToPostSuccess(result.post))
+      })
       .catch((result) => dispatch(AddCommentToPostFail(result.error)));
   };
 };
