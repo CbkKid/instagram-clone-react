@@ -22,7 +22,7 @@ export const posts = [
           text: "so much food!"
         },
         {
-          id: 21,
+          id: 2,
           user: {
             username: "onlydrums",
             avatar:

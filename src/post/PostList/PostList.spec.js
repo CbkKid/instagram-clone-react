@@ -19,7 +19,7 @@ it(`it renders a list of posts`,() => {
         }
     });
     const PostsWithRouter = WithRouter(PostList);
-    renderWithState(<PostsWithRouter  posts={posts} />,{},store);
+    renderWithState(<PostsWithRouter posts={posts} />,{},store);
     const allPosts = screen.getAllByTestId('post-listitem');
     expect(allPosts).toHaveLength(posts.length);
     

@@ -7,7 +7,7 @@ const PostService = {
   async getPost(postId) {
     const promise = new Promise((resolve, reject) => {
       setTimeout(() => {
-        const post = posts.find((post) => post.postId == postId);
+        const post = posts.find((post) => post.postId === parseInt(postId,10));
 
         if (post) {
           resolve(post);
@@ -44,7 +44,7 @@ const PostService = {
   async addCommentToPost(postId, user, commentText) {
     let promise = new Promise(async (resolve, reject) => {
       setTimeout(function () {
-        const post = posts.find((post) => post.postId == postId);
+        const post = posts.find((post) => post.postId === parseInt(postId,10));
         if (post) {
           const length = post.comments.length;
           const comment = CommentModel(length + 1, user, commentText);
@@ -66,11 +66,13 @@ const PostService = {
   async likePost(postId, username) {
     let promise = new Promise((resolve, reject) => {
       setTimeout(function () {
-        const postToLike = posts.find((post) => post.postId == postId);
-        if (postToLike) {
+        const post = posts.find((post) => post.postId === parseInt(postId,10));
+        console.log(post)
+        if (post) {
+          const postToLike = {...post};
           postToLike.isLikedByUser = true;
-          postToLike.likesCount++;
-          posts = posts.map(post=> post.postId === postId ? postToLike : post);
+          postToLike.likesCount = postToLike.likesCount + 1;
+          posts = posts.map(post=> post.postId ===  parseInt(postId,10) ? postToLike : post);
           resolve({ succeeded: true, data: postToLike });
         }
         reject({
@@ -86,11 +88,12 @@ const PostService = {
   async unlikePost(postId, username) {
     let promise = new Promise((resolve, reject) => {
       setTimeout(function () {
-        const postToUnlike = posts.find((post) => post.postId == postId);
-        if (postToUnlike) {
+        const post = posts.find((post) => post.postId === parseInt(postId,10));
+        if (post) {
+          const postToUnlike = {...post}
           postToUnlike.isLikedByUser = false;
           postToUnlike.likesCount--;
-          posts = posts.map(post=> post.postId === postId ? postToUnlike : post);
+          posts = posts.map(post=> post.postId === parseInt(postId,10) ? postToUnlike : post);
           resolve({ succeeded: true, data: postToUnlike });
         }
         reject({

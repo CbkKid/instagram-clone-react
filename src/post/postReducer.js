@@ -1,4 +1,5 @@
 import * as types from "./actionTypes";
+import { createReducer } from '@reduxjs/toolkit';
 
 const initialState = {
   isLoading: false,
@@ -6,111 +7,68 @@ const initialState = {
   data: []
 };
 
-export const postsReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case types.GET_POSTS:
-      return state;
-    case types.ADD_POST:
-      return { ...state, data: [...state.data, action.payload.post] };
-    case types.ADD_POST_COMMENT_SUCCESS:
-      return {
-        ...state,
-        data: [
-          ...state.data.map((post) => {
-            if (post.postId !== parseInt(action.payload.post.postId, 10)) {
-              return post;
-            }
+const AddOrUpdateObjectInArray = (arr,item,id) => {
 
-            return action.payload.post;
-          })
-        ]
-      };
-    case types.ADD_POST_COMMENT_FAIL:
-      return {
-        ...state,
-        error: action.error
-      };
-    case types.FETCH_POST:
-      return {
-        ...state,
-        isLoading: true,
-        error: null
-      };
-    case types.FETCH_POST_SUCCESS:
-      return {
-        isLoading: false,
-        error: null,
-        data: [...state.data, action.post]
-      };
-    case types.FETCH_POST_FAIL:
-      return {
-        ...state,
-        isLoading: false,
-        error: action.error
-      };
-    case types.FETCH_LATEST_POSTS:
-      return {
-        ...state,
-        isLoading: true
-      };
-    case types.FETCH_LATEST_POSTS_SUCCESS:
-      console.log(action);
-      return {
-        isLoading: false,
-        error: null,
-        data: [...action.posts]
-      };
-    case types.FETCH_LATEST_POSTS_FAIL:
-      return {
-        isLoading: false,
-        error: action.error,
-        data: []
-      };
+  return arr.map(i => {
+    if(i[id]!==item[id]){
+      return i;
+    }
+    else{
+      return item;
+    }
+  });
 
-    case types.POST_LIKED_BY_USER_SUCCESS:
-      return {
-        isLoading: false,
-        error: null,
-        data: [
-          ...state.data.map((post) => {
-            if (post.postId !== parseInt(action.post.postId, 10)) {
-              return post;
-            }
+}
 
-            return action.post;
-          })
-        ]
-      };
-
-    case types.POST_LIKED_BY_USER_FAIL:
-      return {
-        isLoading: false,
-        error: action.error,
-      };
-
-    case types.POST_UNLIKED_BY_USER_SUCCESS:
-
-      return {
-        isLoading: false,
-        error: null,
-        data: [
-          ...state.data.map((post) => {
-            if (post.postId !== parseInt(action.post.postId, 10)) {
-              return post;
-            }
-
-            return action.post;
-          })
-        ]
-      };
-
-    case types.POST_UNLIKED_BY_USER_FAIL:
-      return {
-        isLoading: false,
-        error: action.error,
-      };
-
-    default:
-      return state;
-  }
-};
+export const postsReducer = createReducer(initialState, (builder) => {
+  builder
+    .addCase(types.ADD_POST_COMMENT_SUCCESS,(state,action) => {
+      state.data = AddOrUpdateObjectInArray(state.data,action.payload.post,'postId');
+    })
+    .addCase(types.ADD_POST_COMMENT_FAIL,(state,action) => {
+      state.isLoading = false;
+      state.error = action.error;
+    })
+    .addCase(types.FETCH_POST,(state,action) => {
+      state.isLoading = true;
+      state.error = null;
+    })
+    .addCase(types.FETCH_POST_SUCCESS,(state,action) => {
+      state.isLoading = false;
+      state.data = AddOrUpdateObjectInArray(state.data,action.post,'postId');
+    })
+    .addCase(types.FETCH_POST_FAIL,(state,action) => {
+      state.isLoading = false;
+      state.error = action.error;
+    })
+    .addCase(types.FETCH_LATEST_POSTS,(state,action) => {
+      state.isLoading = true;
+    })
+    .addCase(types.FETCH_LATEST_POSTS_SUCCESS,(state,action) => {
+      state.isLoading = false;
+      state.data = [...action.posts]
+    })
+    .addCase(types.FETCH_LATEST_POSTS_FAIL,(state,action) => {
+      state.isLoading = false;
+      state.error = action.error;
+    })
+    .addCase(types.POST_LIKED_BY_USER_FAIL,(state,action) => {
+      state.isLoading = false;
+      state.error = action.error;
+    })
+    .addCase(types.POST_LIKED_BY_USER_SUCCESS,(state,action) => {
+      console.log(action.post)
+      state.isLoading = false;
+      state.error = null;
+      state.data = AddOrUpdateObjectInArray(state.data,action.post,'postId');
+    })
+    .addCase(types.POST_UNLIKED_BY_USER_FAIL,(state,action) => {
+      state.isLoading = false;
+      state.error = action.error;
+    })
+    .addCase(types.POST_UNLIKED_BY_USER_SUCCESS,(state,action) => {
+      state.isLoading = false;
+      state.error = null;
+      state.data = AddOrUpdateObjectInArray(state.data,action.post,'postId');
+    })
+});
