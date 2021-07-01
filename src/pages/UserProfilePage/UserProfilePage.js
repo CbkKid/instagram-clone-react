@@ -10,10 +10,10 @@ const ProfileWithLoading = WithLoading(Profile);
 
 export default function UserProfilePage() {
   const { username } = useParams();
-  const [user, isLoading, userPosts] = useSelector((state) => [
+  const [user, isLoading] = useSelector((state) => [
     state.users.data,
     state.users.isLoading,
-    state.posts.data.includes((post) => post.username === username)
+    // state.posts.data.includes((post) => post.username === username)
   ]);
 
   const dispatch = useDispatch();

@@ -1,12 +1,6 @@
 import * as types from "./actionTypes";
 import { FetchLatestPosts , FetchPost ,LikePost, UnlikePost , AddCommentToPost} from './actions';
-import { createReducer } from '@reduxjs/toolkit';
-
-const initialState = {
-  isLoading: false,
-  error: null,
-  data: []
-};
+import { createReducer , createEntityAdapter } from '@reduxjs/toolkit';
 
 const AddOrUpdateObjectInArray = (arr,item,id) => {
 
@@ -21,10 +15,21 @@ const AddOrUpdateObjectInArray = (arr,item,id) => {
 
 }
 
+const postAdapter = createEntityAdapter({
+  selectId: (post) => post.postId,
+})
+
+const initialState = postAdapter.getInitialState({
+  isLoading: false,
+  error: null,
+});
+
+export const postSelectors = postAdapter.getSelectors((state) => state.posts);
+
 export const postsReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(AddCommentToPost.fulfilled,(state,action) => {
-      state.data = AddOrUpdateObjectInArray(state.data,action.payload.post,'postId');
+      postAdapter.upsertOne(state,action.payload.post);
     })
     .addCase(AddCommentToPost.rejected,(state,action) => {
       state.isLoading = false;
@@ -36,7 +41,7 @@ export const postsReducer = createReducer(initialState, (builder) => {
     })
     .addCase(FetchPost.fulfilled,(state,action) => {
       state.isLoading = false;
-      state.data = AddOrUpdateObjectInArray(state.data,action.payload.post,'postId');
+      postAdapter.upsertOne(state,action.payload.post);
     })
     .addCase(FetchPost.rejected,(state,action) => {
       state.isLoading = false;
@@ -47,7 +52,7 @@ export const postsReducer = createReducer(initialState, (builder) => {
     })
     .addCase(FetchLatestPosts.fulfilled,(state,action) => {
       state.isLoading = false;
-      state.data = [...action.payload.posts]
+      postAdapter.setAll(state,[...action.payload.posts]);
     })
     .addCase(FetchLatestPosts.rejected,(state,action) => {
       state.isLoading = false;
@@ -60,7 +65,7 @@ export const postsReducer = createReducer(initialState, (builder) => {
     .addCase(LikePost.fulfilled,(state,action) => {
       state.isLoading = false;
       state.error = null;
-      state.data = AddOrUpdateObjectInArray(state.data,action.payload.post,'postId');
+      postAdapter.upsertOne(state,action.payload.post);
     })
     .addCase(UnlikePost.rejected,(state,action) => {
       state.isLoading = false;
@@ -69,6 +74,6 @@ export const postsReducer = createReducer(initialState, (builder) => {
     .addCase(UnlikePost.fulfilled,(state,action) => {
       state.isLoading = false;
       state.error = null;
-      state.data = AddOrUpdateObjectInArray(state.data,action.payload.post,'postId');
+      postAdapter.upsertOne(state,action.payload.post);
     })
 });

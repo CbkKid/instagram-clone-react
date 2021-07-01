@@ -5,13 +5,14 @@ import WithLoading from "../../libs/HOC/WithLoading";
 import PostService from "../../libs/Services/PostService";
 import { PostList } from "../../post/PostList";
 import { FetchLatestPosts } from "../../post/actions";
+import { postSelectors } from '../../post/postReducer';
 
 const ListWithLoading = WithLoading(PostList);
 
 export default function FeedPage() {
   const dispatch = useDispatch();
   const [posts, isLoading] = useSelector((state) => [
-    state.posts.data,
+    postSelectors.selectAll(state),
     state.posts.isLoading
   ]);
 

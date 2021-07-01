@@ -6,7 +6,7 @@ import { LikePost, UnlikePost } from '../actions';
 export default function PostActionsContainer({postId}){
 
     const dispatch = useDispatch();
-    const post = useSelector(state => state.posts.data.find(post => post.postId == postId));
+    const post = useSelector(state => state.posts.entities[postId]);
     const {username} = useSelector(state => state.auth.user);
 
     const onLikeClick = (isLikedByUser) => {

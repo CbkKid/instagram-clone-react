@@ -19,7 +19,7 @@ export default function PostPage() {
   const { postId, username } = useParams();
   const dispatch = useDispatch();
   const [post, user, isLoading] = useSelector((state) => [
-    state.posts.data.find((post) => post.postId == postId),
+    state.posts.entities[postId],
     state.users.data,
     state.posts.isLoading
   ]);
