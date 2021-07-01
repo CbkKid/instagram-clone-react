@@ -1,7 +1,7 @@
 import CommentModel from "../Models/CommentModel";
 import { posts as postsMock } from '../Mocks/posts';
 
-let posts = postsMock;
+let posts = [...postsMock];
 
 const PostService = {
   async getPost(postId) {
@@ -10,7 +10,7 @@ const PostService = {
         const post = posts.find((post) => post.postId === parseInt(postId,10));
 
         if (post) {
-          resolve(post);
+          resolve({post: post});
         }
         return null;
       }, Math.floor(Math.random() * 1500));
@@ -21,7 +21,7 @@ const PostService = {
   async getLatestPosts() {
     let promise = new Promise(async (resolve, reject) => {
       setTimeout(function () {
-        resolve(posts);
+        resolve({posts: posts});
       }, Math.floor(Math.random() * 1500));
     });
 
@@ -46,11 +46,12 @@ const PostService = {
       setTimeout(function () {
         const post = posts.find((post) => post.postId === parseInt(postId,10));
         if (post) {
-          const length = post.comments.length;
+          const postWithComments = {...post , comments: [...post.comments]}
+          const length = postWithComments.comments.length;
           const comment = CommentModel(length + 1, user, commentText);
-          post.comments.push(comment);
-          posts = [...posts.map((post) => Object.assign({}, post))];
-          resolve({ succeeded: true, data: post });
+          postWithComments.comments.push(comment);
+          posts = posts.map(post=> post.postId ===  parseInt(postId,10) ? postWithComments : post);
+          resolve({post : postWithComments });
         }
 
         reject({
@@ -73,7 +74,7 @@ const PostService = {
           postToLike.isLikedByUser = true;
           postToLike.likesCount = postToLike.likesCount + 1;
           posts = posts.map(post=> post.postId ===  parseInt(postId,10) ? postToLike : post);
-          resolve({ succeeded: true, data: postToLike });
+          resolve({post : postToLike });
         }
         reject({
           succeeded: false,
@@ -94,7 +95,7 @@ const PostService = {
           postToUnlike.isLikedByUser = false;
           postToUnlike.likesCount--;
           posts = posts.map(post=> post.postId === parseInt(postId,10) ? postToUnlike : post);
-          resolve({ succeeded: true, data: postToUnlike });
+          resolve({post : postToUnlike });
         }
         reject({
           succeeded: false,

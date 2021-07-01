@@ -8,7 +8,7 @@ export default function AddComment({ postId }) {
   const dispatch = useDispatch();
 
   const addComment = (postId, comment) => {
-    dispatch(AddCommentToPost(postId, comment));
+    dispatch(AddCommentToPost({postId: postId, commentText:comment}));
   };
 
   return (

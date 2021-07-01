@@ -1,4 +1,5 @@
 import * as types from "./actionTypes";
+import { FetchLatestPosts , FetchPost ,LikePost, UnlikePost , AddCommentToPost} from './actions';
 import { createReducer } from '@reduxjs/toolkit';
 
 const initialState = {
@@ -22,53 +23,52 @@ const AddOrUpdateObjectInArray = (arr,item,id) => {
 
 export const postsReducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(types.ADD_POST_COMMENT_SUCCESS,(state,action) => {
+    .addCase(AddCommentToPost.fulfilled,(state,action) => {
       state.data = AddOrUpdateObjectInArray(state.data,action.payload.post,'postId');
     })
-    .addCase(types.ADD_POST_COMMENT_FAIL,(state,action) => {
+    .addCase(AddCommentToPost.rejected,(state,action) => {
       state.isLoading = false;
-      state.error = action.error;
+      state.error = action.payload.error;
     })
-    .addCase(types.FETCH_POST,(state,action) => {
+    .addCase(FetchPost.pending,(state,action) => {
       state.isLoading = true;
       state.error = null;
     })
-    .addCase(types.FETCH_POST_SUCCESS,(state,action) => {
+    .addCase(FetchPost.fulfilled,(state,action) => {
       state.isLoading = false;
-      state.data = AddOrUpdateObjectInArray(state.data,action.post,'postId');
+      state.data = AddOrUpdateObjectInArray(state.data,action.payload.post,'postId');
     })
-    .addCase(types.FETCH_POST_FAIL,(state,action) => {
+    .addCase(FetchPost.rejected,(state,action) => {
       state.isLoading = false;
-      state.error = action.error;
+      state.error = action.payload.error;
     })
-    .addCase(types.FETCH_LATEST_POSTS,(state,action) => {
+    .addCase(FetchLatestPosts.pending,(state,action) => {
       state.isLoading = true;
     })
-    .addCase(types.FETCH_LATEST_POSTS_SUCCESS,(state,action) => {
+    .addCase(FetchLatestPosts.fulfilled,(state,action) => {
       state.isLoading = false;
-      state.data = [...action.posts]
+      state.data = [...action.payload.posts]
     })
-    .addCase(types.FETCH_LATEST_POSTS_FAIL,(state,action) => {
+    .addCase(FetchLatestPosts.rejected,(state,action) => {
       state.isLoading = false;
-      state.error = action.error;
+      state.error = action.payload.error;
     })
-    .addCase(types.POST_LIKED_BY_USER_FAIL,(state,action) => {
+    .addCase(LikePost.rejected,(state,action) => {
       state.isLoading = false;
-      state.error = action.error;
+      state.error = action.payload.error;
     })
-    .addCase(types.POST_LIKED_BY_USER_SUCCESS,(state,action) => {
-      console.log(action.post)
+    .addCase(LikePost.fulfilled,(state,action) => {
       state.isLoading = false;
       state.error = null;
-      state.data = AddOrUpdateObjectInArray(state.data,action.post,'postId');
+      state.data = AddOrUpdateObjectInArray(state.data,action.payload.post,'postId');
     })
-    .addCase(types.POST_UNLIKED_BY_USER_FAIL,(state,action) => {
+    .addCase(UnlikePost.rejected,(state,action) => {
       state.isLoading = false;
-      state.error = action.error;
+      state.error = action.payload.error;
     })
-    .addCase(types.POST_UNLIKED_BY_USER_SUCCESS,(state,action) => {
+    .addCase(UnlikePost.fulfilled,(state,action) => {
       state.isLoading = false;
       state.error = null;
-      state.data = AddOrUpdateObjectInArray(state.data,action.post,'postId');
+      state.data = AddOrUpdateObjectInArray(state.data,action.payload.post,'postId');
     })
 });
